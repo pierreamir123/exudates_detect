@@ -2,7 +2,7 @@ import numpy as np
 import cv2 as cv2
 from pywt import swt2 , iswt2
 
-
+# pierre amir
 def findGoodResolutionForWavelet( sizeIn ):
     # Parameters
     maxWavDecom = 2;
