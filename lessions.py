@@ -1,6 +1,8 @@
 import numpy as np
 import cv2 as cv2
 from get_Fov_Mask import *
+from wavelet import findGoodResolutionForWavelet
+
 # pierre amir
 
 def getLesions(rgbImgOrig, showRes, removeON, onY, onX):

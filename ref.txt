@@ -1,3 +1,35 @@
 # resize image
 resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+pywt.swt2(data, wavelet, level, start_level=0, axes=(-2, -1), trim_approx=False, norm=False)¶
+
+pywt.iswt2(coeffs, wavelet, norm=False, axes=(-2, -1))
+Multilevel 2D inverse discrete stationary wavelet transform.
+
+Parameters:	
+coeffs : list
+Approximation and details coefficients:
+
+[
+    (cA_n,
+        (cH_n, cV_n, cD_n)
+    ),
+    ...,
+    (cA_2,
+        (cH_2, cV_2, cD_2)
+    ),
+    (cA_1,
+        (cH_1, cV_1, cD_1)
+    )
+]
+where cA is approximation, cH is horizontal details, cV is vertical details, cD is diagonal details and n is the number of levels. Index 1 corresponds to start_level from pywt.swt2.
+
+wavelet : Wavelet object or name string, or 2-tuple of wavelets
+Wavelet to use. This can also be a 2-tuple of wavelets to apply per axis.
+
+norm : bool, optional
+Controls the normalization used by the inverse transform. This must be set equal to the value that was used by pywt.swt2 to preserve the energy of a round-trip transform.
+
+Returns:	
+2D array of reconstructed data.
