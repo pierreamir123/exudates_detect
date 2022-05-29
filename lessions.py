@@ -95,4 +95,4 @@ def getLesions(rgbImgOrig, showRes, removeON, onY, onX):
         # figure(446);
         # imagesc( lesCandImg );
 
-    return 0  # lesCandImg
+    return lesCandImg
