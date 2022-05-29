@@ -6,9 +6,10 @@ import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 
+# mai radwan
+
 
 def getFovMask(gImg, erodeFlag, seSize, num_arg):
-    fovMask = []
     lowThresh = 0
     if(num_arg < 3):
         seSize = 10
@@ -18,9 +19,9 @@ def getFovMask(gImg, erodeFlag, seSize, num_arg):
 
     lvlFound = find(d >= lowThresh, 1, 'first')
 
-    fovMask = ~(gImg <= lvlFound)
+    fovMask = not(gImg <= lvlFound)
 
-    if(num_arg > 1 & erodeFlag > 0):
+    if(num_arg > 1 and erodeFlag > 0):
         se = line('disk', seSize)
         fovMask = cv2.erode(fovMask, se)
 
