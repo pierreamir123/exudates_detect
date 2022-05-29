@@ -1,0 +1,3 @@
+# resize image
+resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
