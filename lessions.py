@@ -4,7 +4,8 @@ from get_Fov_Mask import *
 from wavelet import findGoodResolutionForWavelet
 from kirsch_egdes import *
 from image_reconstruct import imreconstruct
-
+from skimage.measure import label, regionprops
+import matplotlib.pyplot as plt
 # pierre amir
 
 def getLesions(rgbImgOrig, showRes, removeON, onY, onX):
@@ -81,22 +82,24 @@ def getLesions(rgbImgOrig, showRes, removeON, onY, onX):
 
     #     %--- Calculate edge strength for each lesion candidate (Matlab2008)
     lesCandImg = np.zeros(newSize)
-    lblImg = bwlabel(imgThNoOD, 8)
-    lesCand = regionprops(lblImg, 'PixelIdxList')
+    lblImg = label(imgThNoOD, connectivity=2)
+    lesCand = regionprops(lblImg)
 
     for idxLes in range(1, len(lesCand)):
-        pxIdxList = lesCand[idxLes].PixelIdxList
+        pxIdxList = lesCand[idxLes].coords
         lesCandImg[pxIdxList] = sum(imgEdge(pxIdxList)) / len(pxIdxList)
    
         # % resize back
-    lesCandImg = cv2.resize(
-        lesCandImg, origSize[0:1], interpolation=cv2.INTER_NEAREST)
+    lesCandImg = cv2.resize(lesCandImg, origSize[0:1], interpolation=cv2.INTER_NEAREST)
 
     if(showRes):
         pass
-        # figure(442);
-        # imagesc( rgbImgOrig );
-        # figure(446);
-        # imagesc( lesCandImg );
-
+        fig, ax = plt.subplots(1, 2, sharex='col', sharey='row')
+        ax[0][0].imshow(rgbImgOrig)
+        ax[0][1].imshow(lesCandImg)
+     
     return lesCandImg
+
+
+
+
