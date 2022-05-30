@@ -2,6 +2,7 @@ import numpy as np
 import cv2 as cv2
 from get_Fov_Mask import *
 from wavelet import findGoodResolutionForWavelet
+from kirsch_egdes import *
 
 # pierre amir
 
