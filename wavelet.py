@@ -6,10 +6,9 @@ from pywt import swt2 , iswt2
 def findGoodResolutionForWavelet( sizeIn ):
     # Parameters
     maxWavDecom = 2;
-  
-    pxToAddC = np.pow(2,maxWavDecom) - (sizeIn[1] % np.pow(2,maxWavDecom))
-    pxToAddR = np.pow(2,maxWavDecom) - (sizeIn[0] % np.pow(2,maxWavDecom))
-    sizeOut = sizeIn + [pxToAddR, pxToAddC]
+    pxToAddC = np.power(2,maxWavDecom) - (sizeIn[1] % np.power(2,maxWavDecom))
+    pxToAddR = np.power(2,maxWavDecom) - (sizeIn[0] % np.power(2,maxWavDecom))
+    sizeOut =  np.array([sizeIn[0] + pxToAddR, sizeIn[1] + pxToAddC])
     return sizeOut
 
 def preprocessWavelet( imgIn, fovMask ) :

@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import skimage as sk
 
 
 def imreconstruct(marker: np.ndarray, mask: np.ndarray, radius: int = 1):
@@ -12,8 +13,8 @@ def imreconstruct(marker: np.ndarray, mask: np.ndarray, radius: int = 1):
     """
     kernel = np.ones(shape=(radius * 2 + 1,) * 2, dtype=np.uint8)
     while True:
-        expanded = cv2.dilate(src=marker, kernel=kernel)
-        cv2.bitwise_and(src1=expanded, src2=mask, dst=expanded)
+        expanded = sk.morphology.binary_dilation(marker, kernel)
+        np.bitwise_and(src1=expanded, src2=mask, dst=expanded)
 
         # Termination criterion: Expansion didn't change the image at all
         if (marker == expanded).all():

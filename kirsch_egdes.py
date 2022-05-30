@@ -34,12 +34,12 @@ def kirschEdges(imgIn):
     t8 = cv2.filter2D(imgIn, -1, h8)
 
     # % Find the maximum edges value
-    imgOut = np.max(t1, t2)
-    imgOut = np.max(imgOut, t3)
-    imgOut = np.max(imgOut, t4)
-    imgOut = np.max(imgOut, t5)
-    imgOut = np.max(imgOut, t6)
-    imgOut = np.max(imgOut, t7)
-    imgOut = np.max(imgOut, t8)
+    imgOut = np.maximum(t1, t2)
+    imgOut = np.maximum(imgOut, t3)
+    imgOut = np.maximum(imgOut, t4)
+    imgOut = np.maximum(imgOut, t5)
+    imgOut = np.maximum(imgOut, t6)
+    imgOut = np.maximum(imgOut, t7)
+    imgOut = np.maximum(imgOut, t8)
 
     return imgOut
