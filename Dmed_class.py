@@ -39,7 +39,8 @@ class Dmed:
         self.idMap = np.linspace(1,self.imgNum,num=self.imgNum)  
         self.idMap = self.idMap.astype(np.int32)
         #self.idMap = range (1,self.imgNum+1)
-        #print(self.idMap)
+        # print('id')
+        # print(self.idMap)
             
     
     # #Dmed function in matlab    
@@ -73,9 +74,12 @@ class Dmed:
             img = []
             raise Exception('Index exceeds dataset size of'+str(self.imgNum))
         else:
-            imagename = self.data.get(self.idMap[id])+self.imgExt
-            imgAddress = os.path.join(self.baseDir, imagename)
-            #print(imgAddress)
+            # print('data')
+            # print(self.idMap[id])
+            #print(self.data)
+            #print(self.data.get(self.idMap[id]))
+            imagename = str(self.data.get(self.idMap[id]-1))+self.imgExt
+            imgAddress = os.path.join(self.baseDir+'/'+imagename)
             img = plt.imread(imgAddress)
             
             return img
@@ -83,14 +87,18 @@ class Dmed:
     def getONloc(self,id):
         onRow = []
         onCol = []
-        if(id < 1 or id > self.imgNum):
+        if(id < 0 or id > self.imgNum):
             raise Exception('Index exceeds dataset size of'+str(self.imgNum))
         else:
-            name = self.data.get(self.idMap[id])+self.metaExt
+            # print('num')
+            # print(self.imgNum)
+            name = self.data.get(self.idMap[id]-1)+self.metaExt
             metafile = os.path.join(self.baseDir+"/"+name)
 
             openMetaFile = open(metafile)
             fmeta = openMetaFile.read()
+            # print('meta')
+            # print(fmeta)
  
             openMetaFile.close()
             
@@ -102,8 +110,8 @@ class Dmed:
                 
                 onRow = float(tokRow[1])
                 onCol = float(tokCol[1])
-                print(onRow)
-                print(onCol)
+                # print(onRow)
+                # print(onCol)
             return onRow, onCol   
 
             
