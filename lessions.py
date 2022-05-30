@@ -3,6 +3,7 @@ import cv2 as cv2
 from get_Fov_Mask import *
 from wavelet import findGoodResolutionForWavelet
 from kirsch_egdes import *
+from image_reconstruct import imreconstruct
 
 # pierre amir
 
@@ -53,7 +54,7 @@ def getLesions(rgbImgOrig, showRes, removeON, onY, onX):
 
     # %--- fixed threshold using median Background (with reconstruction)
     medBg = float(
-        medfilt2(imgV8, (round(newSize[0]/30), round(newSize[0]/30))))
+       cv2.medianBlur(imgV8, (round(newSize[0]/30), round(newSize[0]/30) ) ) )
     # %reconstruct bg
     maskImg = float(imgV8)
     pxLbl = maskImg < medBg
