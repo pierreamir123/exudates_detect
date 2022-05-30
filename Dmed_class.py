@@ -1,5 +1,7 @@
 from ast import Num
+from cmath import inf
 import os
+import re
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -37,7 +39,7 @@ class Dmed:
         self.idMap = np.linspace(1,self.imgNum,num=self.imgNum)  
         self.idMap = self.idMap.astype(np.int32)
         #self.idMap = range (1,self.imgNum+1)
-        print(self.idMap)
+        #print(self.idMap)
             
     
     # #Dmed function in matlab    
@@ -73,10 +75,40 @@ class Dmed:
         else:
             imagename = self.data.get(self.idMap[id])+self.imgExt
             imgAddress = os.path.join(self.baseDir, imagename)
-            print(imgAddress)
+            #print(imgAddress)
             img = plt.imread(imgAddress)
             
             return img
+    
+    def getONloc(self,id):
+        onRow = []
+        onCol = []
+        if(id < 1 or id > self.imgNum):
+            raise Exception('Index exceeds dataset size of'+str(self.imgNum))
+        else:
+            name = self.data.get(self.idMap[id])+self.metaExt
+            metafile = os.path.join(self.baseDir+"/"+name)
+
+            openMetaFile = open(metafile)
+            fmeta = openMetaFile.read()
+ 
+            openMetaFile.close()
+            
+
+            tokRow = re.search('ONrow\W+([0-9\.]+)', fmeta)
+            tokCol = re.search('ONcol\W+([0-9\.]+)', fmeta)
+ 
+            if( tokRow and tokCol ):
+                
+                onRow = float(tokRow[1])
+                onCol = float(tokCol[1])
+                print(onRow)
+                print(onCol)
+            return onRow, onCol   
+
+            
+
+        
         
     
                
