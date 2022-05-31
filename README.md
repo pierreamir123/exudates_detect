@@ -1,5 +1,5 @@
 
-# The Hamilton Eye Institute Macular Edema Dataset
+# Detect exudates 
 
 test image processing algorithms for the detection of exudates and diabetic macular edema.
 
