@@ -178,18 +178,22 @@ takes image applies splatial filter to detect edges of vesselses to extract it f
 
 ## Installation
 
-Install my-project with npm
+Install libraries 
 
 ```bash
-  npm install my-project
-  cd my-project
+  pip install -r requirments.txt
 ```
-    
-## Deployment
+ ## to Run proj
 
-To deploy this project run
+for windows
 
 ```bash
-  npm run deploy
+  python test.py
 ```
+for linux
+
+```bash
+  python3 test.py
+```
+
 
